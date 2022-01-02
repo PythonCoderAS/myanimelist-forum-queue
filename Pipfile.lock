@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3b3c88283532b9feb74c7e684f6ecc8e5055131615a86862b77a7df4e4c8bb2b"
+            "sha256": "06baa473c91df509e9bba20e6845df2fc741e63d157a75b6ba9aed2f5db5aa85"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -70,6 +70,18 @@
             ],
             "index": "pypi",
             "version": "==2.9.3"
+        },
+        "pygments": {
+            "hashes": [
+                "sha256:59b895e326f0fb0d733fd28c6839bd18ad0687ba20efc26d4277fd1d30b971f4",
+                "sha256:9135c1af61eec0f650cd1ea1ed8ce298e54d56bcd8cc2ef46edd7702c171337c"
+            ],
+            "markers": "python_version >= '3.5'",
+            "version": "==2.11.1"
+        },
+        "skcode": {
+            "git": "https://github.com/TamiaLab/PySkCode.git",
+            "ref": "228a04db68591f45c064cddbca68c64af8697d24"
         },
         "sqlparse": {
             "hashes": [

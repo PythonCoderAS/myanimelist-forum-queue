@@ -3,6 +3,8 @@ from typing import Optional
 from django.core.validators import MinLengthValidator
 from django.db import models
 
+from skcode import parse_skcode, render_to_html
+
 
 # Create your models here.
 class Post(models.Model):
@@ -80,3 +82,15 @@ class Post(models.Model):
             elif self.manga_id:
                 return f"{self.title} Chapter {self.part_number} Discussion"
         return self.title
+
+    @property
+    def rendered(self):
+        return render_to_html(parse_skcode(self.body))
+
+    @property
+    def created_time_string(self) -> str:
+        return self.created.strftime("%c")
+
+    @property
+    def topic_created_time_string(self) -> Optional[str]:
+        return self.topic_created and self.topic_created.strftime("%c")

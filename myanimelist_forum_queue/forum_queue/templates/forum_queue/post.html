@@ -1,0 +1,45 @@
+<div class="col-lg-6">
+    <div class="card text-white bg-success mb-3">
+        <div class="card-header">
+            {% if item.topic_url %}
+                <a href="{{ item.topic_url }}">{{ item.topic_title }}</a>
+            {% else %}
+                {{ item.topic_title }}
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <div class="post-body">
+                {{ item.rendered }}
+            </div>
+            <div class="post-links">
+                {% if item.board_id %}
+                    <a href="{{ item.board_url }}">{{ item.board_title }}</a>
+                {% elif item.club_id %}
+                    <a href="{{ item.club_home }}">Club Home</a>
+                    <a href="{{ item.club_url }}">Club Board</a>
+                {% elif item.anime_id %}
+                    <a href="{{ item.anime_home }}">Anime Home</a>
+                    <a href="{{ item.anime_url }}">Anime Board</a>
+                {% elif item.manga_id %}
+                    <a href="{{ item.manga_home }}">Manga Home</a>
+                    <a href="{{ item.manga_url }}">Manga Board</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row text-center">
+                <div class="col">
+                    Post ID: {{ item.id }}
+                </div>
+                <div class="col">
+                    Post Queued At: {{ item.created_time_string }}
+                </div>
+                {% if self.topic_created %}
+                    <div class="col">
+                        Topic Created At: {{ self.topic_created_time_string }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
