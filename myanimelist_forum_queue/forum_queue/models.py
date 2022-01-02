@@ -8,14 +8,14 @@ from django.db import models
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, null=False)
-    part_number = models.PositiveIntegerField(null=True, default=None)
-    board_id = models.PositiveIntegerField(null=True, default=None)
-    anime_id = models.PositiveIntegerField(null=True, default=None)
-    manga_id = models.PositiveIntegerField(null=True, default=None)
-    club_id = models.PositiveIntegerField(null=True, default=None)
+    part_number = models.PositiveIntegerField(null=True, default=None, blank=True)
+    board_id = models.PositiveIntegerField(null=True, default=None, blank=True)
+    anime_id = models.PositiveIntegerField(null=True, default=None, blank=True)
+    manga_id = models.PositiveIntegerField(null=True, default=None, blank=True)
+    club_id = models.PositiveIntegerField(null=True, default=None, blank=True)
     body = models.TextField(null=False, validators=[MinLengthValidator(15)])
-    topic_id = models.PositiveIntegerField(null=True, default=None)
-    topic_created = models.DateTimeField(null=True, default=None)
+    topic_id = models.PositiveIntegerField(null=True, default=None, blank=True)
+    topic_created = models.DateTimeField(null=True, default=None, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -29,7 +29,15 @@ class Post(models.Model):
             models.CheckConstraint(
                 check=models.Q(topic_id__isnull=True, topic_created__isnull=True) | models.Q(topic_id__isnull=False,
                                                                                              topic_created__isnull=False),
-                name="topic_created_must_exist_if_topic_id_exists")
+                name="topic_created_must_exist_if_topic_id_exists"),
+            models.CheckConstraint(check=models.Q(board_id__isnull=False, club_id__isnull=True, anime_id__isnull=True,
+                                                  manga_id__isnull=True) | models.Q(board_id__isnull=True,
+                                                                                    club_id__isnull=False,
+                                                                                    anime_id__isnull=True,
+                                                                                    manga_id__isnull=True) | models.Q(
+                board_id__isnull=True, club_id__isnull=True, anime_id__isnull=False, manga_id__isnull=True) | models.Q(
+                board_id__isnull=True, club_id__isnull=True, anime_id__isnull=True, manga_id__isnull=False),
+                                   name="only_one_of_board_id_or_club_id_or_anime_id_or_manga_id_must_exist")
         ]
 
     @property
