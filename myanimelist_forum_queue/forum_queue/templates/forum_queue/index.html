@@ -11,6 +11,84 @@
 {% include "forum_queue/_header.html" %}
 <div class="container">
     <h1 class="text-center">MyAnimeList Forum Queue</h1>
+    <div class="card">
+        <h2 class="card-header text-center">Create Topic</h2>
+        <div class="card-body" style="padding-left: 25%;padding-right: 25%">
+            <p>When a topic is queued, it cannot be deleted. The topic's title must be
+                255 characters or fewer, anything extra is truncated by MyAnimeList
+                automatically.</p>
+            <p>To submit a topic, fill in the fields below and click "Post".</p>
+            <form>
+                <div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="form-title"
+                                       placeholder="Title">
+                                <label for="form-title">Title or Episode/Chapter
+                                    #</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                       id="form-is-part">
+                                <label class="form-check-label" for="form-is-part">
+                                    Is Part #
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control"
+                                               id="form-id"
+                                               placeholder="1">
+                                        <label for="form-id">Board ID #</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <fieldset id="board-type-radios">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio"
+                                                   name="board-type" id="board-general"
+                                                   value="1">
+                                            <label class="form-check-label"
+                                                   for="board-general">General
+                                                Board</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio"
+                                                   name="board-type" id="board-club"
+                                                   value="2">
+                                            <label class="form-check-label"
+                                                   for="board-club">Club
+                                                Board</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio"
+                                                   name="board-type" id="board-anime"
+                                                   value="3">
+                                            <label class="form-check-label"
+                                                   for="board-anime">Anime
+                                                Board</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio"
+                                                   name="board-type" id="board-manga"
+                                                   value="4">
+                                            <label class="form-check-label"
+                                                   for="board-manga">Manga
+                                                Board</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
