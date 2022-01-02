@@ -8,14 +8,14 @@ from django.db import models
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, null=False)
-    part_number = models.PositiveIntegerField(null=True)
-    board_id = models.PositiveIntegerField(null=True)
-    anime_id = models.PositiveIntegerField(null=True)
-    manga_id = models.PositiveIntegerField(null=True)
-    club_id = models.PositiveIntegerField(null=True)
+    part_number = models.PositiveIntegerField(null=True, default=None)
+    board_id = models.PositiveIntegerField(null=True, default=None)
+    anime_id = models.PositiveIntegerField(null=True, default=None)
+    manga_id = models.PositiveIntegerField(null=True, default=None)
+    club_id = models.PositiveIntegerField(null=True, default=None)
     body = models.TextField(null=False, validators=[MinLengthValidator(15)])
-    topic_id = models.PositiveIntegerField(null=True)
-    topic_created = models.DateTimeField(null=True)
+    topic_id = models.PositiveIntegerField(null=True, default=None)
+    topic_created = models.DateTimeField(null=True, default=None)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -34,35 +34,35 @@ class Post(models.Model):
 
     @property
     def topic_url(self) -> Optional[str]:
-        return self.topic_id or f"https://myanimelist.net/forum/?topicid={self.topic_id}"
+        return self.topic_id and f"https://myanimelist.net/forum/?topicid={self.topic_id}"
 
     @property
     def board_url(self) -> Optional[str]:
-        return self.board_id or f"https://myanimelist.net/forum/?board={self.board_id}"
+        return self.board_id and f"https://myanimelist.net/forum/?board={self.board_id}"
 
     @property
     def club_home(self) -> Optional[str]:
-        return self.club_id or f"https://myanimelist.net/clubs.php?cid={self.club_id}"
+        return self.club_id and f"https://myanimelist.net/clubs.php?cid={self.club_id}"
 
     @property
     def club_url(self) -> Optional[str]:
-        return self.club_id or f"https://myanimelist.net/forum/?clubid={self.club_id}"
+        return self.club_id and f"https://myanimelist.net/forum/?clubid={self.club_id}"
 
     @property
     def anime_home(self) -> Optional[str]:
-        return self.anime_id or f"https://myanimelist.net/anime/{self.anime_id}"
+        return self.anime_id and f"https://myanimelist.net/anime/{self.anime_id}"
 
     @property
     def anime_url(self) -> Optional[str]:
-        return self.anime_id or f"https://myanimelist.net/forum/?animeid={self.anime_id}"
+        return self.anime_id and f"https://myanimelist.net/forum/?animeid={self.anime_id}"
 
     @property
     def manga_home(self) -> Optional[str]:
-        return self.manga_id or f"https://myanimelist.net/manga/{self.manga_id}"
+        return self.manga_id and f"https://myanimelist.net/manga/{self.manga_id}"
 
     @property
     def manga_url(self) -> Optional[str]:
-        return self.manga_id or f"https://myanimelist.net/forum/?mangaid={self.manga_id}"
+        return self.manga_id and f"https://myanimelist.net/forum/?mangaid={self.manga_id}"
 
     @property
     def display_title(self) -> str:
