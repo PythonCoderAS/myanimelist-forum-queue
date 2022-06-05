@@ -7,6 +7,10 @@ name = "pypi"
 django = "*"
 psycopg2 = "*"
 skcode = {git = "https://github.com/TamiaLab/PySkCode.git"}
+requests = "*"
+jikanpy = "*"
+aiohttp = "*"
+asgiref = "*"
 
 [dev-packages]
 ipython = "*"

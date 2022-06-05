@@ -1,13 +1,18 @@
-<div class="col-lg-6">
-    <div class="card text-white bg-success mb-3">
-        <div class="card-header">
+<div class="accordion-item">
+    <h2 class="accordion-header" id="post-{{ item.id }}-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#post-{{ item.id }}-body" aria-expanded="true"
+                aria-controls="post-{{ item.id }}-body">
             {% if item.topic_url %}
-                <a href="{{ item.topic_url }}">{{ item.topic_title }}</a>
+                <a href="{{ item.topic_url }}">{{ item.display_title }}</a>
             {% else %}
-                {{ item.topic_title }}
+                {{ item.display_title }}
             {% endif %}
-        </div>
-        <div class="card-body">
+        </button>
+    </h2>
+    <div id="post-{{ item.id }}-body" class="accordion-collapse collapse show"
+         aria-labelledby="post-{{ item.id }}-header" data-bs-parent="#submitted-posts">
+        <div class="accordion-body">
             <div class="post-body">
                 {{ item.rendered }}
             </div>
@@ -25,9 +30,7 @@
                     <a href="{{ item.manga_url }}">Manga Board</a>
                 {% endif %}
             </div>
-        </div>
-        <div class="card-footer">
-            <div class="row text-center">
+            <div class="row text-center muted">
                 <div class="col">
                     Post ID: {{ item.id }}
                 </div>
